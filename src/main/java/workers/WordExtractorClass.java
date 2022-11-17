@@ -1,16 +1,16 @@
 package workers;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MatcherClass {
 
-    public static HashMap<String,Integer> start(){
 
-        HashMap<String,Integer> map = new HashMap<>();
+//класс извлекает из текста все русские слова длиною от трех букв и выполняет первичный подсчет одинаковых сов
+public class WordExtractorClass {
+
+    public static WordCountObject[] start(){
+        SortedMap<String,Integer> map = new TreeMap<>();
         String resp = "n a instanceof r&&a.constructor===r?a.g:\"type_error:SafeUrl\"},v=/^(?:(?:https?|mailto|ftp):|[^:/?#]*(?:[/?#]|$))/i,q={},w=new r(\"about:invalid#zClosurez\",q);var x=/^((market|itms|intent|itms-appss):\\/\\/)/i;\n" +
                 "var A;try{new URL(\"s://g\"),A=!0}catch(a){A=!1}var B=A;var C=function(a){this.A=a};function D(a){return new C(function(c){return c.substr(0,a.length+1).toLowerCase()===a+\":\"})}var E=[D(\"data\"),D(\"http\"),D(\"https\"),D(\"mailto\"),D(\"ftp\"),new C(function(a){return/^[^:]*([/?#]|$)/.test(a)})];function F(a,c){var b=/[?&]adurl=/.exec(c);return b?\"\"+c.slice(0,b.index+1)+a+\"&\"+c.slice(b.index+1):\"\"+c+(-1===c.indexOf(\"?\")?\"?\":\"&\")+a}function G(a,c){a=a.href;var b=/[?&]nis=([^&]*)/.exec(a);return b&&b[1]===c?a:b?a.replace(/([?&])nis=([^&]*)/,function(f,h){return h+\"nis=\"+c}):F(\"nis=\"+c,a)}function H(){var a;return!(null==(a=document.featurePolicy)||!a.allowedFeatures().includes(\"attribution-reporting\"))};var I=new function(){var a={v:google.eufsv},c=this;a=(void 0===a?{}:a).v;this.g=null;a&&navigator.userAgentData&&navigator.userAgentData.getHighEntropyValues&&(a=navigator.userAgentData.getHighEntropyValues(\"platform platformVersion uaFullVersion architecture model bitness fullVersionList wow64\".split(\" \")))&&a.then(function(b){c.g=b})};google.ausb=function(a){if(!a)return google.ml(Error(\"a\"),!1),!0;if(a.hasAttribute(\"data-impdclcc\"))try{var c=a.hasAttribute(\"attributionsourceid\")&&a.hasAttribute(\"attributeon\")&&a.hasAttribute(\"attributiondestination\")?\"2\":a.hasAttribute(\"attributionsrc\")?H()?\"6\":\"5\":H()?\"7\":\"8\";var b=G(a,c);var f=void 0===f?E:f;a:{c=f;c=void 0===c?E:c;for(f=0;f<c.length;++f){var h=c[f];if(h instanceof C&&h.A(b)){var g=new r(b,q);break a}}g=void 0}var d=g||w;if(d instanceof r)var m=t(d);else{b:if(B){try{var J=new URL(d)}catch(y){var p=\n" +
                 "\"https:\";break b}p=J.protocol}else c:{var z=document.createElement(\"a\");try{z.href=d}catch(y){p=void 0;break c}var u=z.protocol;p=\":\"===u||\"\"===u?\"https:\":u}m=\"javascript:\"!==p?d:void 0}d=m;void 0!==d&&(a.href=d)}catch(y){}a.getAttribute(\"data-sbv2\")&&(a.hasAttribute(\"data-ohref\")?d=a.getAttribute(\"data-ohref\"):(d=a.href,a.setAttribute(\"data-ohref\",d)),g=d,b={l:I.g},b=new e({url:g,l:(void 0===b?{}:b).l}),b.h&&b.j||b.s?navigator.sendBeacon?(g=navigator,h=g.sendBeacon,m=\"&act=1&ri=1\",b.h&&b.o&&(m+=\n" +
@@ -27,17 +27,28 @@ public class MatcherClass {
         while (matcher.find()) {
             int start=matcher.start();
             int end=matcher.end();
-            Integer chesc = map.get(resp.substring(start,end));
+            Integer chesc = map.get(resp.substring(start,end).toLowerCase());
             if(chesc==null){
-                map.put(resp.substring(start,end),1);
+               map.put(resp.substring(start,end).toLowerCase(),1);
+               // map.put(resp.substring(start,end),1);
             }else{
                 Integer a =chesc+1;
-                map.put(resp.substring(start,end),a);
+                map.put(resp.substring(start,end).toLowerCase(),a);
+               // map.put(resp.substring(start,end),a);
+                System.out.println("перезапись "+ resp.substring(start,end) + " "+a);
             }
-            System.out.println("Найдено совпадение " + resp.substring(start,end) + " с "+ start + " по " + (end-1) + " позицию");
+            //System.out.println("Найдено совпадение " + resp.substring(start,end) + " с "+ start + " по " + (end-1) + " позицию");
         }
 
-
-        return map;
+        Iterator<Map.Entry<String, Integer>> iterator = map.entrySet().iterator();
+        WordCountObject[] arr = new WordCountObject[map.size()];
+        int i =0;
+        while (i<map.size()){
+            Map.Entry<String, Integer> entry = iterator.next();
+            arr[i]=new WordCountObject(entry.getKey(),entry.getValue());
+            i++;
+        }
+        System.out.println(arr.length);
+        return arr;
     }
 }

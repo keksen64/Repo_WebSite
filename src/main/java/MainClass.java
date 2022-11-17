@@ -8,14 +8,24 @@ import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import workers.*;
 
 public class MainClass {
 
     public static void main(String[] args) throws Exception {
+        //System.out.println(WordMatcherClass.match(WordExtractorClass.start()));
+        WordCountObject[] r = WordMatcherClass.match(WordExtractorClass.start());
+        System.out.println(r.length);
+        //MyArray.show(r);
+
+        System.out.println(WordCountOrderClass.valueSort(r));
+
+
         HttpServer server = HttpServer.create(new InetSocketAddress(8003), 0);
         server.createContext("/test", new MyHandler());
         server.createContext("/main", new StatikHTML());
