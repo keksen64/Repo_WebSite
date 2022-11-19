@@ -3,7 +3,7 @@ package workers;
 
 
 // класс выполняет вторичный подсчет одинаковых слов игнорируя отличающиеся окончания
-public class WordMatcherClass {
+public class WordMatcher1 {
     public static WordCountObject[] match(WordCountObject[] arr){
 
         int replaseCount =0;

@@ -11,7 +11,7 @@
             }
 			function httpGet(){
 				var xmlHttp = new XMLHttpRequest();
-				xmlHttp.open( "GET", "http://194.32.248.200:8003/test", false ); // false for synchronous request
+				xmlHttp.open( "GET", "http://localhost:8004/words/three", false ); // false for synchronous request
 				xmlHttp.send( null );
 				alert(xmlHttp.responseText)
 				return xmlHttp.responseText;

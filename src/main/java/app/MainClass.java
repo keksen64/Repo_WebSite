@@ -1,4 +1,4 @@
-
+package app;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,7 +8,6 @@ import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -16,18 +15,24 @@ import com.sun.net.httpserver.HttpServer;
 import workers.*;
 
 public class MainClass {
+   // public static BlackList blackList = new BlackList();
+
+
 
     public static void main(String[] args) throws Exception {
-        //System.out.println(WordMatcherClass.match(WordExtractorClass.start()));
-        WordCountObject[] r = WordMatcherClass.match(WordExtractorClass.start());
-        System.out.println(r.length);
-        //MyArray.show(r);
 
-        System.out.println(WordCountOrderClass.valueSort(r));
+//        WordCountObject[] r = WordMatcherClass.match(WordExtractorClass.start(StaplerClass.staple(Reader2List.read("siteList.csv"))));
+//        System.out.println(r.length);
+////        System.out.println(WordCountOrderClass.valueSort(r));
+////String test = "Стена состояла из бетонных сегментов высотой в 3,60 м, оборудованных сверху практически непреодолимыми цилиндрическими барьерами. При необходимости стену можно было нарастить в высоту. Кроме самой стены были возведены новые сторожевые башни, строения для пограничников, увеличено количество средств уличного освещения, создана сложная система барьеров. Каждые 200 метров располагались посты пограничников. Со стороны Восточного Берлина вдоль всей протяжённости стены существовала специальная запретная зона с предупредительными табличками «Стой! Пограничная зона. Проход запрещён». Заходить на эту зону гражданским лицам категорически запрещалось. Далее — стена, отделяющая Восточный Берлин, после стены шли металлическая сетка с колючей проволокой, оборудованная бесшумной сигнализацией";
+//        WordCountObject[] r = WordMatcher3.match(WordExtractor3.start(StaplerClass.staple(Reader2List.read("siteList.csv"))));
+////        WordCountObject[] r = WordMatcher3.match(WordExtractor3.start(test));
+//        System.out.println(r.length);
+//        System.out.println(WordCountOrderClass.valueSort(r));
 
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8003), 0);
-        server.createContext("/test", new MyHandler());
+        server.createContext("/app", new MyHandler());
         server.createContext("/main", new StatikHTML());
         server.createContext("/blog.css", new Statikcss1());
         server.createContext("/bootstrap.min.css", new Statikcss2());

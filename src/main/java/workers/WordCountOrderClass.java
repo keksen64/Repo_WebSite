@@ -4,7 +4,7 @@ import java.util.*;
 
 
 
-//класс выполняющий сортировку итогового массива объектов WordCouuntObject по кол-ву зафиксированных слов
+//класс выполняющий сортировку итогового массива объектов WordCouuntObject по кол-ву зафиксированных слов/связок
 public class WordCountOrderClass {
     public static Map<String,Integer> transform (WordCountObject[] arr){
         Map<String, Integer> map = new TreeMap<>();

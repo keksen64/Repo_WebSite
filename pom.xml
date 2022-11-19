@@ -33,7 +33,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>MainClass</mainClass>
+                            <mainClass>app.MainClass</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -41,5 +41,12 @@
         </plugins>
 
     </build>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>LATEST</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
