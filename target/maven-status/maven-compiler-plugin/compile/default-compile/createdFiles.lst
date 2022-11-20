@@ -1,5 +1,5 @@
-MainClass$Statikcss1.class
-MainClass.class
-MainClass$Statikcss2.class
-MainClass$MyHandler.class
-MainClass$StatikHTML.class
+app\MainClass.class
+app\StatikcssBlog.class
+app\MyHandler.class
+app\StatikHTML.class
+app\StatikcssBootstrap.class
