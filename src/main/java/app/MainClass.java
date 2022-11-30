@@ -12,6 +12,7 @@ public class MainClass {
         server.createContext("/blog.css", new StatikcssBlog());
         server.createContext("/bootstrap.min.css", new StatikcssBootstrap());
         server.createContext("/a.png", new StaticImage1());
+        server.createContext("/mem.jpeg", new StaticImage2());
         server.createContext("/CV.pdf", new StaticCV());
         server.setExecutor(java.util.concurrent.Executors.newFixedThreadPool(10));
         server.start();

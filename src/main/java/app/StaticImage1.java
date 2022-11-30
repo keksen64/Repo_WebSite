@@ -19,7 +19,7 @@ public class StaticImage1 implements HttpHandler {
             byte[] response = Files.readAllBytes(Paths.get(filePath));
             httpExchange.getResponseHeaders().set("Access-Control-Allow-Origin", " *");
            // httpExchange.getResponseHeaders().set("Content-Type", "text/css; charset=UTF-8");
-            httpExchange.setAttribute("Content-Type", "image/jpg");
+            httpExchange.setAttribute("Content-Type", "image/png");
             OutputStream outputStream = httpExchange.getResponseBody();
             httpExchange.sendResponseHeaders(200, response.length);
             outputStream.write(response);
